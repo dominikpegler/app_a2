@@ -14,10 +14,14 @@ class App extends React.Component {
     super(props);
     this.state = { favs:[[122891,'Silver Jews'],[112400,'Soulwax'],[113019,'Mr. Bungle'],[115141,'Puscifer']] };
   }; // some favourite artists to start with
+
   render() {
 
     const handleArtistAdded = (idArtist,strArtist,favs) => {
-      this.setState({favs:favs.push([idArtist,strArtist]) });
+
+      let newFavsArray = favs
+      newFavsArray.push([idArtist,strArtist])
+      this.setState({favs:newFavsArray });
     }
 
     return (
