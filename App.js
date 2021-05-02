@@ -13,7 +13,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = { favs:[[122891,'Silver Jews'],[112400,'Soulwax'],[113019,'Mr. Bungle'],[115141,'Puscifer']] };
-  };
+  }; // some favourite artists to start with
   render() {
 
     const handleArtistAdded = (idArtist,strArtist,favs) => {
