@@ -120,7 +120,7 @@ class HomeScreen extends React.Component {
         return(
             <View style={styles.container}>
                 <StatusBar style="auto" />
-                <Text h4 style={{textAlign:'center'}}>Find New Artists</Text>
+                <Text h4 style={{textAlign:'center', margin:8}}>Find New Artists</Text>
                 <FlatList
                     data={this.state.fullData}
                     renderItem={({ item }) => (
@@ -157,7 +157,7 @@ class HomeScreen extends React.Component {
                     ListFooterComponent={this.renderFooter}
                 />
 
-                    <Text h4 style={{textAlign:'center'}}>Favourite Artists</Text>
+                    <Text h4 style={{textAlign:'center',margin:8}}>Favourite Artists</Text>
                     <FlatList
                     data={this.props.route.params.favs}
                     renderItem={({ item }) => (
