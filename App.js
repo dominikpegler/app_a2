@@ -12,7 +12,7 @@ class App extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = { favs:[[112125,'Slipknot'],[113440,'Mudvayne'],[112458,'Sepultura'],[117408,'Amen']] };
+    this.state = { favs:[[122891,'Silver Jews'],[112400,'Soulwax'],[113019,'Mr. Bungle'],[115141,'Puscifer']] };
   };
   render() {
 

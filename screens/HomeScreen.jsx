@@ -77,7 +77,7 @@ class HomeScreen extends React.Component {
                 onChangeText={this.makeRemoteRequest}
                 // onChangeText={this.handleSearch}
                 status='info'
-                placeholder='Search Artist'
+                placeholder='Search by name'
                 style={{
                     borderRadius: 18,
                     borderColor: '#333',
@@ -119,8 +119,8 @@ class HomeScreen extends React.Component {
     render(){
         return(
             <View style={styles.container}>
-                <Text>{this.props.route.params.favs}</Text>
                 <StatusBar style="auto" />
+                <Text h4 style={{textAlign:'center'}}>Find New Artists</Text>
                 <FlatList
                     data={this.state.fullData}
                     renderItem={({ item }) => (
@@ -156,8 +156,10 @@ class HomeScreen extends React.Component {
                     ListHeaderComponent={this.renderHeader}
                     ListFooterComponent={this.renderFooter}
                 />
+
+                    <Text h4 style={{textAlign:'center'}}>Favourite Artists</Text>
                     <FlatList
-                    data={this.favs}
+                    data={this.props.route.params.favs}
                     renderItem={({ item }) => (
                           
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Artist', {idArtist:item[0], strArtist:item[1]})}>
