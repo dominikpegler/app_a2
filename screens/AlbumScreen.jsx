@@ -27,8 +27,8 @@ class AlbumScreen extends React.Component{
                 <Text style={{ fontSize: 16, margin: 2 }}>Year: {this.props.route.params.intYearReleased} </Text>
                 <Text style={{ fontSize: 16, margin: 2 }}>Genre: {this.props.route.params.strGenre} </Text>
                 <ScrollView key={this.props.route.params.idAlbum}>
-                <Image style={{ width: 250, height: 250 , margin: 10, alignSelf:'center'}} source={{uri: this.props.route.params.strAlbumThumb !=="" ? this.props.route.params.strAlbumThumb : undefined }} />
-                    <Text>{this.props.route.params.strDescriptionEN} </Text>
+                <Image style={{ width: 250, height: 250 , margin: 10, alignSelf:'center', borderRadius: 8}} source={{uri: this.props.route.params.strAlbumThumb !=="" ? this.props.route.params.strAlbumThumb : undefined }} />
+                <Text style = {{backgroundColor:'#dddddd', padding: 8}}>{this.props.route.params.strDescriptionEN} </Text>
                 </ScrollView>
 
 

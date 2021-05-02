@@ -9,6 +9,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { favs:[] };
+  };
+
   render() {
     return (
       <NavigationContainer>
@@ -16,6 +22,7 @@ class App extends React.Component {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
+            initialParams={{favs:this.favs}}
           />
           <Stack.Screen
             name="Artist"

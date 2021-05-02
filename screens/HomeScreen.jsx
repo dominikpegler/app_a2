@@ -64,7 +64,9 @@ class HomeScreen extends React.Component {
         <View
             style={{
             backgroundColor: '#fff',
-            padding: 10,
+            padding: 8,
+            margin: 8,
+            borderRadius: 16,
             alignItems: 'center',
             justifyContent: 'center'
             }}>
@@ -76,7 +78,7 @@ class HomeScreen extends React.Component {
                 status='info'
                 placeholder='Search Artist'
                 style={{
-                    borderRadius: 25,
+                    borderRadius: 18,
                     borderColor: '#333',
                     backgroundColor: '#fff'
                 }}
@@ -92,7 +94,7 @@ class HomeScreen extends React.Component {
             style={{
                 height: 1,
                 width: '86%',
-                backgroundColor: '#CED0CE',
+                backgroundColor: '#bEbEbE',
                 marginLeft: '5%'
             }}
             />
@@ -106,7 +108,7 @@ class HomeScreen extends React.Component {
             style={{
               paddingVertical: 20,
               borderTopWidth: 1,
-              borderColor: '#CED0CE'
+              borderColor: '#bEbEbE'
             }}>
             <ActivityIndicator animating size='large' />
           </View>
@@ -127,20 +129,22 @@ class HomeScreen extends React.Component {
                                 style={{
                                 flexDirection: 'row',
                                 padding: 12,
-                                alignItems: 'center'
+                                alignItems: 'center',
+                                backgroundColor: 'white',
+                                borderRadius: 8,
                                 }}
                             >
                                 <Image
-                                    style={{ width: 50, height: 50 }}
+                                    style={{ width: 50, height: 50, borderRadius:8 }}
                                     source={{ uri: item.strArtistThumb !=="" ? item.strArtistThumb : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fac%2FNo_image_available.svg%2F1024px-No_image_available.svg.png&f=1&nofb=1" }}
 
                                 />
                                 <Text
                                 category='s1'
                                 style={{
-                                    color: '#000',
-                                    marginLeft: 16,
-                                    fontSize: 22,
+                                    color: '#222222',
+                                    marginLeft: 14,
+                                    fontSize: 20,
                                 }}>{`${item.strArtist}`}</Text>
                             </View>
                         </TouchableOpacity>
