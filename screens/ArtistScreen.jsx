@@ -43,7 +43,7 @@ class ArtistScreen extends React.Component{
     render() {
         return(
             <View style={styles.container}>              
-                <Text h4>{this.props.route.params.strArtist}</Text>
+                <Text h3 style={{textAlign:'center', margin:6}}>{this.props.route.params.strArtist}</Text>
                 <StatusBar style="auto" />
                 <FlatList
                     data={this.state.fullData}
@@ -53,20 +53,25 @@ class ArtistScreen extends React.Component{
 
                             <View
                                 style={{
-                                flexDirection: 'row',
-                                padding: 16,
+                                flexDirection: 'column',
+                                padding: 12,
                                 alignItems: 'center'
                                 }}
-                            >
-                                <Image
-                                    style={{ width: 100, height: 100 }}
-                                    source={{ uri: item.strAlbumThumb !=="" ? item.strAlbumThumb : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fac%2FNo_image_available.svg%2F1024px-No_image_available.svg.png&f=1&nofb=1" }}
-                                />
-                                <Text
+                            >                                
+                            <Text
                                 category='s1'
                                 style={{
-                                    color: '#000'
-                                }}>{`${item.strAlbum} (${item.intYearReleased})`}</Text>
+                                    color: '#000',
+                                    fontSize: 18,
+                                    margin:6,
+                                }}
+                            >
+                                {`${item.strAlbum} (${item.intYearReleased})`}
+                            </Text>
+                                <Image
+                                    style={{ width: 150, height: 150 }}
+                                    source={{ uri: item.strAlbumThumb !=="" ? item.strAlbumThumb : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fac%2FNo_image_available.svg%2F1024px-No_image_available.svg.png&f=1&nofb=1" }}
+                                />
                             </View>
                         </TouchableOpacity>
                     )}

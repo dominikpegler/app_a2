@@ -126,19 +126,21 @@ class HomeScreen extends React.Component {
                             <View
                                 style={{
                                 flexDirection: 'row',
-                                padding: 16,
+                                padding: 12,
                                 alignItems: 'center'
                                 }}
                             >
                                 <Image
-                                    style={{ width: 100, height: 100 }}
+                                    style={{ width: 50, height: 50 }}
                                     source={{ uri: item.strArtistThumb !=="" ? item.strArtistThumb : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fac%2FNo_image_available.svg%2F1024px-No_image_available.svg.png&f=1&nofb=1" }}
 
                                 />
                                 <Text
                                 category='s1'
                                 style={{
-                                    color: '#000'
+                                    color: '#000',
+                                    marginLeft: 16,
+                                    fontSize: 22,
                                 }}>{`${item.strArtist}`}</Text>
                             </View>
                         </TouchableOpacity>
