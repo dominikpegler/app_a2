@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import styles from '../stylesheet';
-import { FlatList, View, TouchableOpacity, Image } from 'react-native';
+import { FlatList, View, TouchableOpacity, Image, Button } from 'react-native';
 import { Text } from 'react-native-elements';
 import Author from '../components/Author.jsx';
 
@@ -42,7 +42,14 @@ class ArtistScreen extends React.Component{
 
     render() {
         return(
-            <View style={styles.container}>              
+            <View style={styles.container}>
+                <Button
+                    title="Add to favs"
+                    onPress={() =>
+                    // this.props.navigation.navigate('Home')
+                    this.props.route.params.onArtistAdded(this.props.route.params.idArtist,this.props.route.params.strArtist,this.props.route.params.favs)
+                }                   
+                />              
                 <Text h3 style={{textAlign:'center', margin:6}}>{this.props.route.params.strArtist}</Text>
                 <StatusBar style="auto" />
                 <FlatList
@@ -80,12 +87,6 @@ class ArtistScreen extends React.Component{
                     ListHeaderComponent={this.renderHeader}
                     ListFooterComponent={this.renderFooter}
                 />
-                {/* <Button
-                    title="Back to search"
-                    onPress={() =>
-                    this.props.navigation.navigate('Home')
-                    }
-                /> */}
                 <Author/>
             </View>
         );

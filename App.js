@@ -10,23 +10,28 @@ const Stack = createStackNavigator();
 
 class App extends React.Component {
 
-  constructor(props) {
+  constructor(props){
     super(props);
-    this.state = { favs:[] };
+    this.state = { favs:[[112125,'Slipknot'],[113440,'Mudvayne'],[112458,'Sepultura'],[117408,'Amen']] };
   };
-
   render() {
+
+    const handleArtistAdded = (idArtist,strArtist,favs) => {
+      this.setState({favs:favs.push([idArtist,strArtist]) });
+    }
+
     return (
-      <NavigationContainer>
-        <Stack.Navigator>
+      <NavigationContainer >
+        <Stack.Navigator initialRouteName="Home" headerMode="screen">
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            initialParams={{favs:this.favs}}
+            initialParams={{ favs: this.state.favs }}
           />
           <Stack.Screen
             name="Artist"
             component={ArtistScreen}
+            initialParams={{ favs: this.state.favs, onArtistAdded:handleArtistAdded.bind(this) }}
             />
           <Stack.Screen
             name="Album"

@@ -6,14 +6,15 @@ import { Text, Input } from 'react-native-elements';
 import Author from '../components/Author.jsx';
 //import filter from 'lodash.filter';
 
-class HomeScreen extends React.Component {    
+class HomeScreen extends React.Component {
 
-    state = {
-        loading: false,
-        data: [],
-        error: null,
-        query: '',
-        fullData: []
+
+        state = {
+            loading: false,
+            data: [],
+            error: null,
+            query: '',
+            fullData: []
     };
 
     makeRemoteRequest = text => {
@@ -118,6 +119,7 @@ class HomeScreen extends React.Component {
     render(){
         return(
             <View style={styles.container}>
+                <Text>{this.props.route.params.favs}</Text>
                 <StatusBar style="auto" />
                 <FlatList
                     data={this.state.fullData}
@@ -153,6 +155,34 @@ class HomeScreen extends React.Component {
                     ItemSeparatorComponent={this.renderSeparator}
                     ListHeaderComponent={this.renderHeader}
                     ListFooterComponent={this.renderFooter}
+                />
+                    <FlatList
+                    data={this.favs}
+                    renderItem={({ item }) => (
+                          
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Artist', {idArtist:item[0], strArtist:item[1]})}>
+
+                            <View
+                                style={{
+                                flexDirection: 'row',
+                                padding: 12,
+                                alignItems: 'center',
+                                backgroundColor: 'white',
+                                borderRadius: 8,
+                                }}
+                            >
+                                <Text
+                                category='s2'
+                                style={{
+                                    color: '#222222',
+                                    marginLeft: 14,
+                                    fontSize: 20,
+                                }}>{`${item[1]}`}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
+                    keyExtractor={item => item[0]}
+                    ItemSeparatorComponent={this.renderSeparator}
                 />
                 <Author/>
             </View>

@@ -5,10 +5,10 @@ import { styleSheets } from 'min-document';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#c9c9c9',
+    backgroundColor: '#88889f',
     paddingHorizontal: 20,
     paddingVertical: 20,
-    marginTop: 40
+    marginTop: 0
   },
 });
 
