@@ -8,7 +8,6 @@ import Author from '../components/Author.jsx';
 
 class HomeScreen extends React.Component {
 
-
         state = {
             loading: false,
             data: [],

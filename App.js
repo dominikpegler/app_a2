@@ -19,14 +19,25 @@ class App extends React.Component {
 
     const handleArtistAdded = (idArtist,strArtist,favs_id,favs_name) => {
 
-      let newFavsIdArray = favs_id
+      const newFavsIdArray = favs_id
       newFavsIdArray.push(idArtist)
       this.setState({ favs_id: newFavsIdArray });
-
-      let newFavsNameArray = favs_name
-      newFavsNameArray.push([idArtist,strArtist])
+      const newFavsNameArray = favs_name
+      newFavsNameArray.push([strArtist])
       this.setState({ favs_name:newFavsNameArray });
 
+    }
+
+    const handleArtistRemoved = (idArtist,favs_id,favs_name) => {
+
+      const indexOfArtist = favs_id.indexOf(idArtist)
+
+      const newFavsIdArray = favs_id
+      newFavsIdArray.splice(indexOfArtist,1)
+      this.setState({ favs_id: newFavsIdArray });
+      const newFavsNameArray = favs_name
+      newFavsNameArray.splice(indexOfArtist,1)
+      this.setState({ favs_name:newFavsNameArray });
     }
 
     return (
@@ -40,7 +51,7 @@ class App extends React.Component {
           <Stack.Screen
             name="Artist"
             component={ArtistScreen}
-            initialParams={{ favs_id: this.state.favs_id, favs_name: this.state.favs_name, onArtistAdded:handleArtistAdded.bind(this) }}
+            initialParams={{ favs_id: this.state.favs_id, favs_name: this.state.favs_name, onArtistRemoved:handleArtistRemoved.bind(this), onArtistAdded:handleArtistAdded.bind(this) }}
             />
           <Stack.Screen
             name="Album"

@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import styles from '../stylesheet';
-import { FlatList, View, TouchableOpacity, Image, Button } from 'react-native';
+import { FlatList, View, TouchableOpacity, Image } from 'react-native';
 import { Text } from 'react-native-elements';
 import Author from '../components/Author.jsx';
+import FavButton from '../components/FavButton.jsx';
 
 class ArtistScreen extends React.Component{
 
@@ -13,7 +14,7 @@ class ArtistScreen extends React.Component{
         page: 1,
         error: null,
         query: '',
-        fullData: []
+        fullData: [],
     };
 
     componentDidMount() {
@@ -41,35 +42,11 @@ class ArtistScreen extends React.Component{
         }
 
     render() {
-
-
-        function favButton(props) {
-
-            const isFav = props.favs_id.includes(props.idArtist);
-
-            if (isFav) {
-                return <Button
-                    title="Remove from favs"
-                    onPress={() =>
-                        // this.props.navigation.navigate('Home')
-                        this.props.route.params.onArtistRemoved(this.props.route.params.idArtist, this.props.route.params.strArtist, this.props.route.params.favs_id, this.props.route.params.favs_name)
-                    }
-                />;
-            } else {
-                return <Button
-                    title="Add to favs"
-                    onPress={() =>
-                        // this.props.navigation.navigate('Home')
-                        this.props.route.params.onArtistAdded(this.props.route.params.idArtist, this.props.route.params.strArtist, this.props.route.params.favs_id, this.props.route.params.favs_name)
-                    }
-                />;
-            }
-        }
             
         return (        
 
             <View style={styles.container}>
-                < favButton idArtist={this.props.route.params.idArtist} strArtist={this.props.route.params.strArtist}/>
+                <FavButton onArtistRemoved={this.props.route.params.onArtistRemoved} onArtistAdded={this.props.route.params.onArtistAdded} favs_name={this.props.route.params.favs_name}  favs_id={this.props.route.params.favs_id} idArtist={this.props.route.params.idArtist} strArtist={this.props.route.params.strArtist}/>
                 <Text h3 style={{textAlign:'center', margin:6}}>{this.props.route.params.strArtist}</Text>
                 <StatusBar style="auto" />
                 <FlatList
