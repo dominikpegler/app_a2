@@ -12,16 +12,21 @@ class App extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = { favs:[[122891,'Silver Jews'],[112400,'Soulwax'],[113019,'Mr. Bungle'],[115141,'Puscifer']] };
+    this.state = { favs_id:[122891,112400,113019,115141], favs_name:['Silver Jews','Soulwax','Mr. Bungle','Puscifer']};
   }; // some favourite artists to start with
 
   render() {
 
-    const handleArtistAdded = (idArtist,strArtist,favs) => {
+    const handleArtistAdded = (idArtist,strArtist,favs_id,favs_name) => {
 
-      let newFavsArray = favs
-      newFavsArray.push([idArtist,strArtist])
-      this.setState({favs:newFavsArray });
+      let newFavsIdArray = favs_id
+      newFavsIdArray.push(idArtist)
+      this.setState({ favs_id: newFavsIdArray });
+
+      let newFavsNameArray = favs_name
+      newFavsNameArray.push([idArtist,strArtist])
+      this.setState({ favs_name:newFavsNameArray });
+
     }
 
     return (
@@ -30,12 +35,12 @@ class App extends React.Component {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            initialParams={{ favs: this.state.favs }}
+            initialParams={{ favs_id: this.state.favs_id, favs_name: this.state.favs_name }}
           />
           <Stack.Screen
             name="Artist"
             component={ArtistScreen}
-            initialParams={{ favs: this.state.favs, onArtistAdded:handleArtistAdded.bind(this) }}
+            initialParams={{ favs_id: this.state.favs_id, favs_name: this.state.favs_name, onArtistAdded:handleArtistAdded.bind(this) }}
             />
           <Stack.Screen
             name="Album"

@@ -21,7 +21,7 @@ class ArtistScreen extends React.Component{
         }
         
     makeRemoteRequest = () => {
-        const { page } = this.state
+        // const { page } = this.state
         const url = `https://theaudiodb.com/api/v1/json/1/album.php?i=${this.props.route.params.idArtist}`
             this.setState({ loading: true })
    
@@ -41,15 +41,35 @@ class ArtistScreen extends React.Component{
         }
 
     render() {
-        return(
-            <View style={styles.container}>
-                <Button
+
+
+        function favButton(props) {
+
+            const isFav = props.favs_id.includes(props.idArtist);
+
+            if (isFav) {
+                return <Button
+                    title="Remove from favs"
+                    onPress={() =>
+                        // this.props.navigation.navigate('Home')
+                        this.props.route.params.onArtistRemoved(this.props.route.params.idArtist, this.props.route.params.strArtist, this.props.route.params.favs_id, this.props.route.params.favs_name)
+                    }
+                />;
+            } else {
+                return <Button
                     title="Add to favs"
                     onPress={() =>
-                    // this.props.navigation.navigate('Home')
-                    this.props.route.params.onArtistAdded(this.props.route.params.idArtist,this.props.route.params.strArtist,this.props.route.params.favs)
-                }                   
-                />              
+                        // this.props.navigation.navigate('Home')
+                        this.props.route.params.onArtistAdded(this.props.route.params.idArtist, this.props.route.params.strArtist, this.props.route.params.favs_id, this.props.route.params.favs_name)
+                    }
+                />;
+            }
+        }
+            
+        return (        
+
+            <View style={styles.container}>
+                < favButton idArtist={this.props.route.params.idArtist} strArtist={this.props.route.params.strArtist}/>
                 <Text h3 style={{textAlign:'center', margin:6}}>{this.props.route.params.strArtist}</Text>
                 <StatusBar style="auto" />
                 <FlatList
@@ -88,7 +108,7 @@ class ArtistScreen extends React.Component{
                     ListFooterComponent={this.renderFooter}
                 />
                 <Author/>
-            </View>
+                </View>
         );
     }
 }

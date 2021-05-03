@@ -116,7 +116,13 @@ class HomeScreen extends React.Component {
         )
     }
 
-    render(){
+    render() {
+        
+        var a = this.props.route.params.favs_id;
+        var b = this.props.route.params.favs_name;
+
+        var dataForFlatlist = a.map(function (e, i) { return [e, b[i]]; });
+
         return(
             <View style={styles.container}>
                 <StatusBar style="auto" />
@@ -159,7 +165,7 @@ class HomeScreen extends React.Component {
 
                     <Text h4 style={{textAlign:'center',margin:8}}>Favourite Artists</Text>
                     <FlatList
-                    data={this.props.route.params.favs}
+                    data={dataForFlatlist}
                     renderItem={({ item }) => (
                           
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Artist', {idArtist:item[0], strArtist:item[1]})}>
