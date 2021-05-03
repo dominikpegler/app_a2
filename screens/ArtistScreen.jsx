@@ -46,7 +46,7 @@ class ArtistScreen extends React.Component{
         return (        
 
             <View style={styles.container}>
-                <FavButton onArtistRemoved={this.props.route.params.onArtistRemoved} onArtistAdded={this.props.route.params.onArtistAdded} favs_name={this.props.route.params.favs_name}  favs_id={this.props.route.params.favs_id} idArtist={this.props.route.params.idArtist} strArtist={this.props.route.params.strArtist}/>
+                <FavButton onFavsUpdate={this.props.route.params.onFavsUpdate} onArtistRemoved={this.props.route.params.onArtistRemoved} onArtistAdded={this.props.route.params.onArtistAdded} favs_name={this.props.route.params.favs_name}  favs_id={this.props.route.params.favs_id} idArtist={this.props.route.params.idArtist} strArtist={this.props.route.params.strArtist}/>
                 <Text h3 style={{textAlign:'center', margin:6}}>{this.props.route.params.strArtist}</Text>
                 <StatusBar style="auto" />
                 <FlatList
