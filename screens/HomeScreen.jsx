@@ -1,21 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import styles from '../stylesheet';
-import { FlatList, View, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
+import { FlatList, View, TouchableOpacity, ActivityIndicator, Image, DatePickerIOSComponent } from 'react-native';
 import { Text, Input } from 'react-native-elements';
 import Author from '../components/Author.jsx';
 //import filter from 'lodash.filter';
 
 class HomeScreen extends React.Component {
 
+    constructor(props) {
+        super(props);
 
-        state = {
+        this.state = {
             loading: false,
             data: [],
             error: null,
             query: '',
-            fullData: []
-    };
+            fullData: [],
+            favs_id:props.route.params.favs_id,
+            favs_name:props.route.params.favs_name
+    }};
+
+    handleFavsUpdate = (favs_id,favs_name) => {
+
+        this.setState({favs_id:favs_id,favs_name:favs_name})
+
+    }
 
     makeRemoteRequest = text => {
 
@@ -116,7 +126,13 @@ class HomeScreen extends React.Component {
         )
     }
 
-    render(){
+    render() {
+        
+        var a = this.state.favs_id;
+        var b = this.state.favs_name;
+
+        var dataForFlatlist = a.map(function (e, i) { return [e, b[i]]; });
+
         return(
             <View style={styles.container}>
                 <StatusBar style="auto" />
@@ -125,7 +141,7 @@ class HomeScreen extends React.Component {
                     data={this.state.fullData}
                     renderItem={({ item }) => (
                           
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Artist', {idArtist:item.idArtist, strArtist:item.strArtist})}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Artist', {onFavsUpdate:this.handleFavsUpdate, idArtist:item.idArtist, strArtist:item.strArtist})}>
 
                             <View
                                 style={{
@@ -133,7 +149,6 @@ class HomeScreen extends React.Component {
                                 padding: 12,
                                 alignItems: 'center',
                                 backgroundColor: 'white',
-                                borderRadius: 8,
                                 }}
                             >
                                 <Image
@@ -159,10 +174,10 @@ class HomeScreen extends React.Component {
 
                     <Text h4 style={{textAlign:'center',margin:8}}>Favourite Artists</Text>
                     <FlatList
-                    data={this.props.route.params.favs}
+                    data={dataForFlatlist}
                     renderItem={({ item }) => (
                           
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Artist', {idArtist:item[0], strArtist:item[1]})}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Artist', {onFavsUpdate:this.handleFavsUpdate, idArtist:item[0], strArtist:item[1]})}>
 
                             <View
                                 style={{
@@ -170,7 +185,6 @@ class HomeScreen extends React.Component {
                                 padding: 12,
                                 alignItems: 'center',
                                 backgroundColor: 'white',
-                                borderRadius: 8,
                                 }}
                             >
                                 <Text

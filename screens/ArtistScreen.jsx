@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import styles from '../stylesheet';
-import { FlatList, View, TouchableOpacity, Image, Button } from 'react-native';
+import { FlatList, View, TouchableOpacity, Image } from 'react-native';
 import { Text } from 'react-native-elements';
 import Author from '../components/Author.jsx';
+import FavButton from '../components/FavButton.jsx';
 
 class ArtistScreen extends React.Component{
 
@@ -13,7 +14,7 @@ class ArtistScreen extends React.Component{
         page: 1,
         error: null,
         query: '',
-        fullData: []
+        fullData: [],
     };
 
     componentDidMount() {
@@ -21,7 +22,7 @@ class ArtistScreen extends React.Component{
         }
         
     makeRemoteRequest = () => {
-        const { page } = this.state
+        // const { page } = this.state
         const url = `https://theaudiodb.com/api/v1/json/1/album.php?i=${this.props.route.params.idArtist}`
             this.setState({ loading: true })
    
@@ -41,15 +42,11 @@ class ArtistScreen extends React.Component{
         }
 
     render() {
-        return(
+            
+        return (        
+
             <View style={styles.container}>
-                <Button
-                    title="Add to favs"
-                    onPress={() =>
-                    // this.props.navigation.navigate('Home')
-                    this.props.route.params.onArtistAdded(this.props.route.params.idArtist,this.props.route.params.strArtist,this.props.route.params.favs)
-                }                   
-                />              
+                <FavButton onFavsUpdate={this.props.route.params.onFavsUpdate} onArtistRemoved={this.props.route.params.onArtistRemoved} onArtistAdded={this.props.route.params.onArtistAdded} favs_name={this.props.route.params.favs_name}  favs_id={this.props.route.params.favs_id} idArtist={this.props.route.params.idArtist} strArtist={this.props.route.params.strArtist}/>
                 <Text h3 style={{textAlign:'center', margin:6}}>{this.props.route.params.strArtist}</Text>
                 <StatusBar style="auto" />
                 <FlatList
@@ -88,7 +85,7 @@ class ArtistScreen extends React.Component{
                     ListFooterComponent={this.renderFooter}
                 />
                 <Author/>
-            </View>
+                </View>
         );
     }
 }
