@@ -5,6 +5,12 @@ import AlbumScreen from './screens/AlbumScreen';
 import ArtistScreen from './screens/ArtistScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs([
+ 'Non-serializable values were found in the navigation state',
+]); // see https://reactnavigation.org/docs/troubleshooting/#i-get-the-warning-non-serializable-values-were-found-in-the-navigation-state
+    // remove this to get warning and resolve issue (e.g. passing functions to screen via navigation.setOptions)
 
 const Stack = createStackNavigator();
 
