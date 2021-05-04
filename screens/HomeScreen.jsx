@@ -197,7 +197,7 @@ class HomeScreen extends React.Component {
                             </View>
                         </TouchableOpacity>
                     )}
-                    keyExtractor={item => item[0]}
+                    keyExtractor={item => item[0].toString()}
                     ItemSeparatorComponent={this.renderSeparator}
                 />
                 <Author/>
