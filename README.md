@@ -20,7 +20,11 @@
 react-navigation, react-native-elements, expo-status-bar
 
 **Dauer der Entwicklung**:  
-[12 Stunden]
+[13 Stunden]
+(ohne Vorerfahrung)
+- 6 h App-Aufbau und API-Calls
+- 6 h Favourites-Liste inkl. Buttons und Callbacks
+- 1 h Kompilieren (apk über Expo)
 
 ### Weitere Anmerkungen:  
 2 Dinge kann man noch verbessern:
